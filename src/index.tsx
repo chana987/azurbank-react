@@ -3,13 +3,24 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from './utils/style';
+import { StocksProvider } from './context/stocks';
+import { ApolloProvider } from '@apollo/client';
+import client from './utils/apollo';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <StocksProvider>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </StocksProvider>
+    </ApolloProvider>
   </React.StrictMode>
 );
 

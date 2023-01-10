@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'App.css';
+import React, { useContext } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+import { StocksContext } from 'context/stocks';
+import Home from 'screens/Home';
 
 function App() {
+  const { loading } = useContext(StocksContext);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: '1rem' }}>
+                <p>הדף לא קיים</p>
+              </main>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+      {loading && <CircularProgress />}
     </div>
   );
 }
