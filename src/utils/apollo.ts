@@ -26,7 +26,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-    const jwt = getJwt();
+    const jwt = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjczNTIwNTM2LCJleHAiOjE2NzYxMTI1MzZ9.5gFZAu6ti3ql74lUo677eqbJ82C3YtUFxSCGtPTu0Kg";
     return {
         headers: {
             ...headers,

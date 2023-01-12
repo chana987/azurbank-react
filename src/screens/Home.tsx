@@ -1,21 +1,25 @@
 import React, { useContext, useEffect } from 'react';
 import { StocksContext } from 'context/stocks';
-import { stockColumnHeaders } from 'utils/constants';
+import { stocksColumnHeaders } from 'utils/constants';
 import Paper from '@mui/material/Paper';
-import CollapsibleTable from 'components/CollapsibleTable';
+import DataTable from 'components/Table/DataTable';
+import { Stock } from 'utils/types';
 
 const Home = () => {
   const { stocks, getStocks } = useContext(StocksContext);
 
   useEffect(() => {
-    getStocks();
+    if (!stocks.length) {
+      getStocks();
+    }
   }, []);
 
   return (
     <Paper elevation={3}>
       <h1>בית</h1>
-      <CollapsibleTable
-        columns={stockColumnHeaders}
+      <DataTable<Stock>
+        collapsible
+        columns={stocksColumnHeaders}
         rows={stocks}
       />
     </Paper>

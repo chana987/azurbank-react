@@ -8,6 +8,7 @@ import { theme } from './utils/style';
 import { StocksProvider } from './context/stocks';
 import { ApolloProvider } from '@apollo/client';
 import client from './utils/apollo';
+import { UsersProvider } from 'context/users';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,11 +16,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <StocksProvider>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </StocksProvider>
+      <UsersProvider>
+        <StocksProvider>
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+        </StocksProvider>
+      </UsersProvider>
     </ApolloProvider>
   </React.StrictMode>
 );

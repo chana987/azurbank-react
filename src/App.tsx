@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import { StocksContext } from 'context/stocks';
 import Home from 'screens/Home';
+import Users from 'screens/Users';
 
 function App() {
   const { loading } = useContext(StocksContext);
@@ -13,6 +14,7 @@ function App() {
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/users" element={<Users />} />
           <Route
             path="*"
             element={

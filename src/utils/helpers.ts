@@ -11,4 +11,3 @@ export const convertCurrency = (value: number, from: Currency, to: Currency) => 
 
   return value * 3.5;
 }
-  

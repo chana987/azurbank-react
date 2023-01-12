@@ -4,6 +4,7 @@ import {
 } from "../graphql/queries";
 import React, { createContext } from "react";
 import { StocksContextState } from "utils/types";
+import { formatStocks } from "utils/formatters";
 
 export const StocksContext = createContext({} as StocksContextState);
 
@@ -11,7 +12,7 @@ export const StocksProvider = ({ children }: { children: React.ReactElement; }) 
   const [getStocks, { data, loading }] = useLazyQuery(GET_ALL_STOCKS);
 
   const iState = {
-    stocks: data?.stocks || [],
+    stocks: formatStocks(data?.stocks?.data) || [],
     getStocks,
     loading,
   } as StocksContextState;
