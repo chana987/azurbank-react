@@ -5,6 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { StocksContext } from 'context/stocks';
 import Home from 'screens/Home';
 import Users from 'screens/Users';
+import SingleUser from 'screens/User';
 
 function App() {
   const { loading } = useContext(StocksContext);
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/user/:id" element={<SingleUser />} />
           <Route
             path="*"
             element={

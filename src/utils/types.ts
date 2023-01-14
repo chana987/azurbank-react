@@ -15,6 +15,21 @@ export enum Role {
   AUTHENTICATED = 'AUTHENTICATED',
 }
 
+export enum Route {
+  HOME = '',
+  LOGIN = 'login',
+  REGISTER = 'register',
+  STOCK = 'stock',
+  STOCKS = 'stocks',
+  USER = 'user',
+  USERS = 'users',
+}
+
+export type RouteParams = {
+  [Route.STOCK]: { id: string },
+  [Route.USER]: { id: string },
+}
+
 export interface AuthContextState {
   authStatus: AuthStatus,
   updateLoginDetails: (i: Partial<LoginDetails>) => void,
@@ -30,6 +45,7 @@ export interface Column {
   accessor: string;
   header: string;
   convertValue?: (value: any) => string;
+  link?: Route;
 }
 
 export interface LoginDetails {
@@ -64,16 +80,21 @@ export interface User {
   firstName?: string;
   lastName?: string;
   role?: Role;
-  stocks?: {
-    stock: Stock,
-    amount: number,
-    value: number,
-  }[];
+  stocks?: UserStock[];
+}
+
+export interface UserStock {
+  id: string;
+  amount: number;
+  stock: Stock;
+  value: number;
 }
 
 export interface UsersContextState {
+  getUser: (id: string) => void;
   getUsers: () => void;
   loading: boolean;
+  user: User;
   users: User[];
 }
 

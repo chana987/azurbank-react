@@ -17,18 +17,6 @@ export const GET_ALL_STOCKS = gql`
   }
 `;
 
-export const ME = gql`
-  query me {
-    me {
-      id
-      username
-      role {
-        name
-      }
-    }
-  }
-`;
-
 export const GET_ALL_USERS = gql`
   query users {
     usersPermissionsUsers {
@@ -42,4 +30,43 @@ export const GET_ALL_USERS = gql`
     }
   }
 `;
-      
+
+export const GET_USER = gql`
+  query user($id: ID!) {
+    usersPermissionsUser(id: $id) {
+      data {
+        id
+        attributes {
+          username
+          birthday
+          stocks {
+            stock {
+              id
+              attributes {
+                hebrewName
+                values {
+                  date
+                  value
+                }
+              }
+            }
+            amount
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const ME = gql`
+  query me {
+    me {
+      id
+      username
+      email
+      role {
+        name
+      }
+    }
+  }
+`;

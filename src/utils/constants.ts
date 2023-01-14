@@ -1,4 +1,4 @@
-import { Column, Currency } from "./types";
+import { Column, Currency, Route } from "./types";
 
 export const currencySymbols: Record<string, string> = {
   [Currency.ILS]: '₪',
@@ -45,6 +45,7 @@ export const usersColumnHeaders: Column[] = [
   {
     header: 'שם משתמש',
     accessor: 'firstname',
+    link: Route.USER,
   }, 
   {
     header: 'יום הולדת',
@@ -56,6 +57,7 @@ export const userStocksColumnHeaders: Column[] = [
   {
     header: 'שם החברה',
     accessor: 'stock.hebrewName',
+    link: Route.STOCK,
   },
   {
     header: 'סמל',
