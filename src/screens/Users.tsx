@@ -5,6 +5,8 @@ import { UsersContext } from 'context/users';
 import { User } from 'utils/types';
 import Paper from '@mui/material/Paper';
 
+import Typography from '@mui/material/Typography';
+
 const Users = () => {
   const { users, getUsers } = useContext(UsersContext);
 
@@ -16,11 +18,11 @@ const Users = () => {
 
   return (
     <Paper elevation={3}>
-      <h1>חברים</h1>
-      <DataTable<User>
-        rows={users}
-        columns={usersColumnHeaders}
-      />
+      <Typography variant="h1">עמיתים</Typography>
+        <DataTable<User>
+          rows={users}
+          columns={usersColumnHeaders}
+        />
     </Paper>
   );
 };

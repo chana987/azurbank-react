@@ -4,6 +4,7 @@ import { stocksColumnHeaders } from 'utils/constants';
 import Paper from '@mui/material/Paper';
 import DataTable from 'components/Table/DataTable';
 import { Stock } from 'utils/types';
+import Typography from '@mui/material/Typography';
 
 const Home = () => {
   const { stocks, getStocks } = useContext(StocksContext);
@@ -16,7 +17,7 @@ const Home = () => {
 
   return (
     <Paper elevation={3}>
-      <h1>בית</h1>
+      <Typography variant="h1">מניות</Typography>
       <DataTable<Stock>
         collapsible
         columns={stocksColumnHeaders}

@@ -40,17 +40,19 @@ export const GET_USER = gql`
           username
           birthday
           stocks {
+            amount
             stock {
-              id
-              attributes {
-                hebrewName
-                values {
-                  date
-                  value
+              data {
+                id
+                attributes {
+                  hebrewName
+                  values {
+                    date
+                    value
+                  }
                 }
               }
             }
-            amount
           }
         }
       }

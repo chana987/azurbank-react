@@ -33,7 +33,7 @@ export const stocksColumnHeaders: Column[] = [
     accessor: 'symbol',
   },
   {
-    header: 'שווי שוק',
+    header: 'שווי כולל',
     accessor: 'currentPrice',
     convertValue: (value: number) => {
       return `₪${value?.toFixed(2)}`;
@@ -41,31 +41,71 @@ export const stocksColumnHeaders: Column[] = [
   },
 ];
 
+export const userActionsColumnHeaders: Column[] = [
+  {
+    header: 'סוג פעולה',
+    accessor: 'type',
+  },
+  {
+    header: 'תאריך',
+    accessor: 'date',
+    convertValue: (value: string) => {
+      return new Date(value).toLocaleDateString('he-IL');
+    }
+  },
+  {
+    header: 'כמות',
+    accessor: 'amount',
+  },
+  {
+    header: 'שווי כולל',
+    accessor: 'value',
+    convertValue: (value: number) => {
+      return `₪${value?.toFixed(2)}`;
+    }
+  },
+  {
+    header: 'סטטוס',
+    accessor: 'status',
+  },
+];
+
 export const usersColumnHeaders: Column[] = [
   {
-    header: 'שם משתמש',
+    header: 'שם העמית',
     accessor: 'firstname',
     link: Route.USER,
-  }, 
+  },
+  {
+    header: 'קוד זיהוי',
+    accessor: 'id',
+  },
   {
     header: 'יום הולדת',
     accessor: 'birthday',
+  },
+  {
+    header: 'שווי תיק',
+    accessor: 'portfolioValue',
+    convertValue: (value: number) => {
+      return `₪${value?.toFixed(2)}`;
+    }
   },
 ];
 
 export const userStocksColumnHeaders: Column[] = [
   {
     header: 'שם החברה',
-    accessor: 'stock.hebrewName',
+    accessor: 'hebrewName',
     link: Route.STOCK,
   },
   {
     header: 'סמל',
-    accessor: 'stock.symbol',
+    accessor: 'symbol',
   },
   {
-    header: 'שווי שוק',
-    accessor: 'stock.currentPrice',
+    header: 'שווי',
+    accessor: 'currentPrice',
     convertValue: (value: number) => {
       return `₪${value?.toFixed(2)}`;
     }

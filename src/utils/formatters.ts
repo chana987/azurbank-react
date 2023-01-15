@@ -1,41 +1,48 @@
-import { Stock } from "./types";
+import { Stock, User, UserStock } from "./types";
 
 export const formatStocks = (stocks: any): Stock[] => {
-  return stocks?.map((stock: any) => {
+  return stocks?.map((s: any) => {
     return {
-      id: stock?.id,
-      companyName: stock?.attributes?.companyName,
-      currency: stock?.attributes?.currency,
-      currentPrice: stock?.attributes?.values?.[0]?.value,
-      hebrewName: stock?.attributes?.hebrewName,
-      symbol: stock?.attributes?.symbol,
-      values: stock?.attributes?.values,
+      id: s?.id,
+      companyName: s?.attributes?.companyName,
+      currency: s?.attributes?.currency,
+      currentPrice: s?.attributes?.values?.[0]?.value,
+      hebrewName: s?.attributes?.hebrewName,
+      symbol: s?.attributes?.symbol,
+      values: s?.attributes?.values,
     };
   });
 }
 
-export const formatUsers = (users: any): any => {
-  return users?.map((user: any) => {
-    return {
-      id: user?.id,
-      firstname: user?.attributes?.username,
-      stocks: formatStocks(user?.attributes?.stocks),
-      birthday: user?.attributes?.birthday,
-    };
+export const formatUsers = (users: any): User[] => {
+  return users?.map((u: any) => {
+    return formatUser(u);
   });
 }
 
-export const formatUserStocks = (user: any): any => {
-  return user?.stocks?.map((stock: any) => {
+export const formatUser = (u: any): User => {
+  return {
+    id: u?.id,
+    birthday: u?.attributes?.birthday,
+    firstName: u?.attributes?.username,
+    stocks: formatUserStocks(u?.attributes?.stocks),
+    portfolioValue: u?.attributes?.stocks?.reduce((acc: number, s: any) => {
+      return acc + s?.stock?.data?.attributes?.values?.[0]?.value * s?.amount;
+    }, 0),
+  };
+}
+
+export const formatUserStocks = (stocks: any): UserStock[] => {
+  return stocks?.map((s: any) => {
     return {
-      id: stock?.stock?.id,
-      amount: stock?.amount,
-      companyName: stock?.stock?.attributes?.companyName,
-      currency: stock?.stock?.attributes?.currency,
-      currentPrice: stock?.stock?.attributes?.values?.[0]?.value,
-      hebrewName: stock?.stock?.attributes?.hebrewName,
-      symbol: stock?.stock?.attributes?.symbol,
-      value: stock?.stock?.attributes?.values?.[0]?.value * stock?.amount,
+      id: s?.stock?.data?.id,
+      amount: s?.amount,
+      companyName: s?.stock?.data?.attributes?.companyName,
+      currency: s?.stock?.data?.attributes?.currency,
+      currentPrice: s?.stock?.data?.attributes?.values?.[0]?.value,
+      hebrewName: s?.stock?.data?.attributes?.hebrewName,
+      symbol: s?.stock?.data?.attributes?.symbol,
+      value: s?.stock?.data?.attributes?.values?.[0]?.value * s?.amount,
     };
   });
 }

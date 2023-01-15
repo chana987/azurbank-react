@@ -5,7 +5,6 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import CollapsibleRow from './CollapsibleRow';
 import Row from './Row';
 
 interface ColProps<T> {
@@ -31,9 +30,7 @@ const DataTable = <T extends { id: string }>(props: ColProps<T>) => {
       </TableHead>
       <TableBody>
         {props.rows?.map((row: T, i: number) => 
-          props.collapsible ? 
-            <CollapsibleRow index={i} row={row} columns={props.columns} /> :
-            <Row key={i} row={row} columns={props.columns} />
+            <Row key={i} row={row} columns={props.columns} collapsible={props.collapsible} />
         )}
       </TableBody>
     </Table>

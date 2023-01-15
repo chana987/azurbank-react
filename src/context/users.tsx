@@ -4,7 +4,7 @@ import {
 } from "../graphql/queries";
 import React, { createContext } from "react";
 import { UsersContextState } from "utils/types";
-import { formatUsers } from "utils/formatters";
+import { formatUser, formatUsers } from "utils/formatters";
 
 export const UsersContext = createContext({} as UsersContextState);
 
@@ -15,7 +15,7 @@ export const UsersProvider = ({ children }: { children: React.ReactElement; }) =
   });
 
   const iState = {
-    user: formatUsers(userData?.usersPermissionsUser?.data)?.[0],
+    user: formatUser(userData?.usersPermissionsUser?.data) || {},
     users: formatUsers(data?.usersPermissionsUsers?.data) || [],
     getUser,
     getUsers,

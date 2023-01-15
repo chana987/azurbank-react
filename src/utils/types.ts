@@ -1,3 +1,14 @@
+export enum ActionStatus {
+  SUCCESS = "SUCCESS",
+  ERROR = "ERROR",
+  PROCESSING = "PROCESSING",
+}
+
+export enum ActionType {
+  BUY = "BUY",
+  SELL = "SELL",
+}
+
 export enum AuthStatus {
   SignedIn = "signedin",
   SignedOut = "signedout",
@@ -28,6 +39,16 @@ export enum Route {
 export type RouteParams = {
   [Route.STOCK]: { id: string },
   [Route.USER]: { id: string },
+}
+
+export interface Action {
+  id: string;
+  amount: number;
+  date: Date;
+  status: ActionStatus;
+  stock: Stock;
+  type: ActionType;
+  value?: number;
 }
 
 export interface AuthContextState {
@@ -76,11 +97,14 @@ export interface StocksContextState {
 
 export interface User {
   id: string;
+  actions?: Action[];
+  birthday?: Date;
   email?: string;
   firstName?: string;
   lastName?: string;
   role?: Role;
   stocks?: UserStock[];
+  portfolioValue?: number;
 }
 
 export interface UserStock {
