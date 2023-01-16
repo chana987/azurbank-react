@@ -3,7 +3,7 @@ import DataTable from 'components/Table/DataTable';
 import { usersColumnHeaders } from 'utils/constants';
 import { UsersContext } from 'context/users';
 import { User } from 'utils/types';
-import Paper from '@mui/material/Paper';
+import Container from '@mui/material/Container';
 
 import Typography from '@mui/material/Typography';
 
@@ -17,13 +17,13 @@ const Users = () => {
   }, []);
 
   return (
-    <Paper elevation={3}>
+    <Container>
       <Typography variant="h1">עמיתים</Typography>
         <DataTable<User>
           rows={users}
           columns={usersColumnHeaders}
         />
-    </Paper>
+    </Container>
   );
 };
 

@@ -6,12 +6,14 @@ import { StocksContext } from 'context/stocks';
 import Home from 'screens/Home';
 import Users from 'screens/Users';
 import SingleUser from 'screens/User';
+import Appbar from 'components/Appbar';
 
 function App() {
   const { loading } = useContext(StocksContext);
 
   return (
     <div className="App">
+      <Appbar />
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="/" element={<Home />} />

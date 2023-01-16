@@ -19,13 +19,15 @@ export const theme = createTheme({
   direction: 'rtl',
   palette: {
     primary: {
-      main: "#004FD1",
+      main: "FF5B00",
+      dark: "990000",
     },
     secondary: {
-      main: "#FFA85C",
+      main: "D4D925",
+      light: "FFEE63",
     },
     text: {
-      primary: "#1e1729",
+      primary: "#1E1729",
     },
     neutral: {
       main: "#3BCE96",
@@ -53,9 +55,6 @@ export const theme = createTheme({
       color: "#004FD1",
     },
   },
-  shape: {
-    borderRadius: 7,
-  },
   components: {
     MuiDivider: {
       styleOverrides: {
@@ -63,15 +62,6 @@ export const theme = createTheme({
           backgroundColor: theme.palette.grey[200],
           margin: "1rem 0",
           height: "1px",
-        }),
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        root: ({ theme }: any) => ({
-          padding: "3rem",
-          minHeight: "100%",
-          backgroundColor: theme.palette.grey[100],
         }),
       },
     },

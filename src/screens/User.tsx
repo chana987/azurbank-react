@@ -3,7 +3,7 @@ import DataTable from 'components/Table/DataTable';
 import { userActionsColumnHeaders, userStocksColumnHeaders } from 'utils/constants';
 import { UsersContext } from 'context/users';
 import { Action, User } from 'utils/types';
-import Paper from '@mui/material/Paper';
+import Container from '@mui/material/Container';
 import { useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
@@ -20,7 +20,7 @@ const SingleUser = () => {
   }, []);
 
   return (
-    <Paper elevation={3}>
+    <Container>
       <Typography variant="h1">{user?.firstName}</Typography>
       <CardContent>
         <Grid
@@ -74,7 +74,7 @@ const SingleUser = () => {
           columns={userActionsColumnHeaders}
         />
       </CardContent>
-    </Paper>
+    </Container>
   );
 };
 

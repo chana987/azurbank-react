@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { StocksContext } from 'context/stocks';
 import { stocksColumnHeaders } from 'utils/constants';
-import Paper from '@mui/material/Paper';
+import Container from '@mui/material/Container';
 import DataTable from 'components/Table/DataTable';
 import { Stock } from 'utils/types';
 import Typography from '@mui/material/Typography';
@@ -16,14 +16,14 @@ const Home = () => {
   }, []);
 
   return (
-    <Paper elevation={3}>
+    <Container>
       <Typography variant="h1">מניות</Typography>
       <DataTable<Stock>
         collapsible
         columns={stocksColumnHeaders}
         rows={stocks}
       />
-    </Paper>
+    </Container>
   );
 };
 
