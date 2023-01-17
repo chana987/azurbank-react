@@ -2,9 +2,10 @@ import { Action, Dividend, HistoricPrice, Stock, User, UserStock } from './types
 
 export const formatAction = (a: any): Action => {
 	return {
-		id: a?.id,
-		value: a?.attributes?.stockPrice * a?.attributes?.amount,
 		...a?.attributes,
+		id: a?.id,
+		date: a?.attributes?.date,
+		value: a?.attributes?.stockPrice * a?.attributes?.amount,
 	};
 };
 
@@ -42,11 +43,13 @@ export const formatHistoricPrices = (historicPrices: any): HistoricPrice[] => {
 
 export const formatStock = (s: any): Stock => {
 	return {
+		...s.attributes,
 		id: s?.id,
 		currentPrice: s?.attributes?.historicPrices?.[0]?.stockPrice,
 		dividends: formatDividends(s?.attributes?.dividends),
+		hebrewName: s?.attributes?.hebrewName,
 		historicPrices: formatHistoricPrice(s?.attributes?.historicPrices),
-		...s?.attributes,
+		stockPrice: s?.attributes?.historicPrices?.[0]?.stockPrice,
 	};
 };    
 
@@ -57,17 +60,18 @@ export const formatStocks = (stocks: any): Stock[] => {
 };
 
 export const formatUser = (u: any): User => {
-	return {
+	const user = {
+		...u?.attributes,
 		id: u?.id,
 		actions: formatActions(u?.attributes?.actions),
 		joinDate: u?.attributes?.joinDate || u?.attributes?.createdAt,
 		portfolioValue: u?.attributes?.stocks?.reduce((acc: number, s: any) => {
 			return acc + s?.stock?.data?.attributes?.values?.[0]?.value * s?.amount;
-		}, 0),
+		}, 0) || 0,
 		role: u?.attributes?.role?.data?.attributes?.name,
 		stocks: formatUserStocks(u?.attributes?.stocks),
-		...u?.attributes,
 	};
+	return user;
 };
 
 export const formatUsers = (users: any): User[] => {
@@ -79,9 +83,8 @@ export const formatUsers = (users: any): User[] => {
 export const formatUserStocks = (stocks: any): UserStock[] => {
 	return stocks?.map((s: any) => {
 		return {
-			id: s?.stock?.data?.id,
 			amount: s?.amount,
-			stock: formatStock(s?.stock?.data?.attributes),
+			stock: formatStock(s?.stock?.data),
 			value: s?.stock?.data?.attributes?.historicPrices?.[0]?.stockPrice * s?.amount,
 		};
 	});

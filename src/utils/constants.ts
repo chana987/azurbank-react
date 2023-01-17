@@ -1,4 +1,5 @@
-import { Column, Currency, Route } from './types';
+import { Action, Currency, HistoricPrice, Route, Stock, User, UserStock } from './types';
+import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 
 export const currencySymbols: Record<string, string> = {
 	[Currency.ILS]: '₪',
@@ -6,165 +7,129 @@ export const currencySymbols: Record<string, string> = {
 	[Currency.EUR]: '€',
 };
 
-export const stockColumnHeaders: Column[] = [
+export const stockColumnHeaders: MRT_ColumnDef<HistoricPrice>[] = [
 	{
 		header: 'תאריך',
-		accessor: 'date',
-		convertValue: (value: string) => {
-			return new Date(value).toLocaleDateString('he-IL');
-		}
+		accessorKey: 'date',
 	},
 	{
 		header: 'מחיר למנייה',
-		accessor: 'stockPrice',
-		convertValue: (value: number) => {
-			return `₪${value?.toFixed(2)}`;
-		}
+		accessorKey: 'stockPrice',
 	},
 ];
 
-export const stocksColumnHeaders: Column[] = [
+export const stocksColumnHeaders: MRT_ColumnDef<Stock>[] = [
 	{
 		header: 'שם החברה',
-		accessor: 'hebrewName',
+		accessorKey: 'hebrewName',
 	}, 
 	{
 		header: 'סמל',
-		accessor: 'symbol',
+		accessorKey: 'symbol',
 	},
 	{
 		header: 'שווי שוק',
-		accessor: 'marketPrice',
-		convertValue: (value: number) => {
-			return `₪${value?.toFixed(2)}`;
-		}
+		accessorKey: 'marketValue',
 	},
 	{
 		header: 'P/E',
-		accessor: 'PE',
+		accessorKey: 'PE',
 	},
 	{
 		header: 'תשואת דיבידנדים',
-		accessor: 'DPR',
+		accessorKey: 'DPR',
 	},
 	{
 		header: 'מחיר למנייה',
-		accessor: 'stockPrice',
-		convertValue: (value: number) => {
-			return `₪${value?.toFixed(2)}`;
-		}
+		accessorKey: 'stockPrice',
 	},
 ];
 
-export const userActionsColumnHeaders: Column[] = [
+export const userActionsColumnHeaders: MRT_ColumnDef<Action>[] = [
 	{
 		header: 'סוג פעולה',
-		accessor: 'type',
+		accessorKey: 'type',
 	},
 	{
 		header: 'תאריך',
-		accessor: 'date',
-		convertValue: (value: string) => {
-			return new Date(value).toLocaleDateString('he-IL');
-		}
+		accessorKey: 'date',
 	},
 	{
 		header: 'שם החברה',
-		accessor: 'stock.hebrewName',
+		accessorKey: 'stock.hebrewName',
 	},
 	{
 		header: 'כמות',
-		accessor: 'amount',
+		accessorKey: 'amount',
 	},
 	{
 		header: 'מחיר למנייה',
-		accessor: 'stockPrice',
+		accessorKey: 'stock.stockPrice',
 	},
 	{
 		header: 'סה"כ מחיר',
-		accessor: 'value',
-		convertValue: (value: number) => {
-			return `₪${value?.toFixed(2)}`;
-		}
+		accessorKey: 'value',
 	},
 	{
 		header: 'סטטוס',
-		accessor: 'status',
+		accessorKey: 'status',
 	},
 ];
 
-export const usersColumnHeaders: Column[] = [
+export const usersColumnHeaders: MRT_ColumnDef<User>[] = [
 	{
 		header: 'מספר חשבון',
-		accessor: 'id',
+		accessorKey: 'id',
 	},
 	{
-		header: 'שם העמית',
-		accessor: 'firstname',
-		link: Route.USER,
+		header: 'שם העמית/ה',
+		accessorKey: 'firstName',
 	},
 	{
 		header: 'שם משפחה',
-		accessor: 'lastname',
+		accessorKey: 'lastName',
 	},
 	{
 		header: 'יום הולדת',
-		accessor: 'birthday',
+		accessorKey: 'birthday',
 	},
 	{
 		header: 'תאריך הצטרפות',
-		accessor: 'joinDate',
+		accessorKey: 'joinDate',
 	},
 	{
 		header: 'שווי תיק',
-		accessor: 'portfolioValue',
-		convertValue: (value: number) => {
-			return `₪${value?.toFixed(2)}`;
-		}
+		accessorKey: 'portfolioValue',
 	},
 ];
 
-export const userStocksColumnHeaders: Column[] = [
+export const userStocksColumnHeaders: MRT_ColumnDef<UserStock>[] = [
 	{
 		header: 'שם החברה',
-		accessor: 'hebrewName',
-		link: Route.STOCK,
+		accessorKey: 'stock.hebrewName',
 	},
 	{
 		header: 'סמל',
-		accessor: 'symbol',
-	},
-	{
-		header: 'שווי שוק',
-		accessor: 'marketPrice',
-		convertValue: (value: number) => {
-			return `₪${value?.toFixed(2)}`;
-		}
+		accessorKey: 'stock.symbol',
 	},
 	{
 		header: 'P/E',
-		accessor: 'PE',
+		accessorKey: 'stock.PE',
 	},
 	{
 		header: 'תשואת דיבידנדים',
-		accessor: 'DPR',
+		accessorKey: 'stock.DPR',
 	},
 	{
 		header: 'מחיר למנייה',
-		accessor: 'stockPrice',
-		convertValue: (value: number) => {
-			return `₪${value?.toFixed(2)}`;
-		}
+		accessorKey: 'stock.stockPrice',
 	},
 	{
 		header: 'כמות',
-		accessor: 'amount',
+		accessorKey: 'amount',
 	},
 	{
-		header: 'סה"כ מחיר',
-		accessor: 'value',
-		convertValue: (value: number) => {
-			return `₪${value?.toFixed(2)}`;
-		}
-	}
+		header: 'סה"כ שווי',
+		accessorKey: 'value',
+	},
 ];

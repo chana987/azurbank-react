@@ -25,7 +25,6 @@ export const GET_ALL_STOCKS = gql`
           marketValue
           PE
           securityId
-          stockPrice
           symbol
         }
       }
@@ -68,6 +67,28 @@ export const GET_ALL_USERS = gql`
             stock {
               data {
                 id
+                attributes {
+                  companyName
+                  currency
+                  dividends {
+                    date
+                    percentage
+                    sum
+                    xDate
+                  }
+                  DPR
+                  hebrewName
+                  historicPrices {
+                    date
+                    stockPrice
+                  }
+                  isin
+                  issuerId
+                  marketValue
+                  PE
+                  securityId
+                  symbol
+                }
               }
             }
           }
@@ -116,6 +137,28 @@ export const GET_USER = gql`
             stock {
               data {
                 id
+                attributes {
+                  companyName
+                  currency
+                  dividends {
+                    date
+                    percentage
+                    sum
+                    xDate
+                  }
+                  DPR
+                  hebrewName
+                  historicPrices {
+                    date
+                    stockPrice
+                  }
+                  isin
+                  issuerId
+                  marketValue
+                  PE
+                  securityId
+                  symbol
+                }
               }
             }
           }

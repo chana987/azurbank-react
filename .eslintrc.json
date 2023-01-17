@@ -9,6 +9,12 @@
         "plugin:@typescript-eslint/recommended"
     ],
     "overrides": [
+        {
+            "files": ["*.ts", "*.tsx"],
+            "rules": {
+                "@typescript-eslint/explicit-module-boundary-types": "off"
+            }
+        }
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -35,6 +41,10 @@
         "semi": [
             "error",
             "always"
+        ],
+        "comma-dangle": [
+            "warn",
+            "always-multiline"
         ]
     }
 }

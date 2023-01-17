@@ -34,16 +34,18 @@ const SingleUser = () => {
 						md={3}
 						xs={6}
 					>
-						<Grid item>
-							<Typography sx={{fontWeight: 800}}>
-                קוד העמית:
-							</Typography>
-						</Grid>
-						<Grid item>
-							<Typography sx={{fontWeight: 800}}>
+						<Typography sx={{fontWeight: 800}}>
+                שם העמית/ה:
+						</Typography>
+						<Typography sx={{fontWeight: 800}}>
+                מספר חשבון:
+						</Typography>
+						<Typography sx={{fontWeight: 800}}>
                 שווי התיק:
-							</Typography>
-						</Grid>
+						</Typography>
+						<Typography sx={{fontWeight: 800}}>
+                יתרה שקלית:
+						</Typography>
 					</Grid>
 					<Grid
 						container
@@ -54,10 +56,16 @@ const SingleUser = () => {
 						xs={6}
 					>
 						<Typography>
+							{`${user?.firstName} ${user?.lastName}`}
+						</Typography>
+						<Typography>
 							{user?.id}
 						</Typography>
 						<Typography>
               ₪{user?.stocks?.map(s => s.value)?.reduce((a, b) => (a || 0) + (b || 0), 0) || 0}
+						</Typography>
+						<Typography>
+              ₪{user?.balance || 0}
 						</Typography>
 					</Grid>
 				</Grid>
