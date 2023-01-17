@@ -1,24 +1,29 @@
 export enum ActionStatus {
-  SUCCESS = "SUCCESS",
-  ERROR = "ERROR",
-  PROCESSING = "PROCESSING",
+  UNSUBMITTED = 'UNSUBMITTED',
+  AWAITING_APPROVAL = 'AWAITING_APPROVAL',
+  COMPLETED = 'COMPLETED',
 }
 
 export enum ActionType {
-  BUY = "BUY",
-  SELL = "SELL",
+  BUY = 'BUY',
+  SELL = 'SELL',
 }
 
 export enum AuthStatus {
-  SignedIn = "signedin",
-  SignedOut = "signedout",
-  Loading = "loading",
+  SignedIn = 'signedin',
+  SignedOut = 'signedout',
+  Loading = 'loading',
 }
 
 export enum Currency {
   EUR = 'EUR',
   ILS = 'ILS',
   USD = 'USD',
+}
+
+export enum Gender {
+  FEMALE = 'FEMALE',
+  MALE = 'MALE',
 }
 
 export enum Role {
@@ -43,40 +48,55 @@ export type RouteParams = {
 
 export interface Action {
   id: string;
-  amount: number;
-  date: Date;
-  status: ActionStatus;
-  stock: Stock;
-  type: ActionType;
+  amount?: number;
+  date?: Date;
+  status?: ActionStatus;
+  stock?: Stock;
+  stockPrice?: number;
+  type?: ActionType;
   value?: number;
 }
 
 export interface AuthContextState {
   authStatus: AuthStatus,
-  updateLoginDetails: (i: Partial<LoginDetails>) => void,
+  getMe: () => Promise<any>,
+  meLoading: boolean
   loginDetails: LoginDetails,
   login: () => Promise<LoginResult>,
   logout: () => void,
-  getMe: () => Promise<any>,
+  updateLoginDetails: (i: Partial<LoginDetails>) => void,
   userData: { id: string, username: string, role: string | null },
-  meLoading: boolean
 }
 
 export interface Column {
   accessor: string;
-  header: string;
   convertValue?: (value: any) => string;
+  header: string;
   link?: Route;
 }
 
+export interface Dividend {
+  id: string;
+  date?: Date;
+  percentage?: number;
+  sum?: number;
+  xDate?: Date;
+}
+
+export interface HistoricPrice {
+  id: string;
+  date?: Date;
+  stockPrice?: number;
+}
+
 export interface LoginDetails {
-  password: string;
   identifier: string;
+  password: string;
 }
 
 export interface LoginResult {
-  success: boolean;
   message: string;
+  success: boolean;
 }
 
 export interface Stock {
@@ -84,9 +104,17 @@ export interface Stock {
   companyName?: string;
   currency?: Currency;
   currentPrice?: number;
+  dividends: Dividend[];
+  DPR?: number;
   hebrewName?: string;
+  historicPrices: HistoricPrice[];
+  isin?: string;
+  issuerId?: number;
+  marketValue?: number;
+  PE?: number;
+  securityId?: number;
+  stockPrice?: number;
   symbol?: string;
-  values?: Value[];
 }
 
 export interface StocksContextState {
@@ -97,33 +125,31 @@ export interface StocksContextState {
 
 export interface User {
   id: string;
-  actions?: Action[];
+  actions: Action[];
+  balance?: number;
   birthday?: Date;
   email?: string;
   firstName?: string;
+  gender?: Gender;
+  joinDate: Date;
   lastName?: string;
-  role?: Role;
-  stocks?: UserStock[];
   portfolioValue?: number;
+  role?: Role;
+  stocks: UserStock[];
+  username?: string;
 }
 
 export interface UserStock {
   id: string;
-  amount: number;
-  stock: Stock;
-  value: number;
+  amount?: number;
+  stock?: Stock;
+  value?: number;
 }
 
 export interface UsersContextState {
   getUser: (id: string) => void;
   getUsers: () => void;
-  loading: boolean;
+  loading?: boolean;
   user: User;
   users: User[];
-}
-
-export interface Value {
-  id: string;
-  date: Date;
-  value: number;
 }

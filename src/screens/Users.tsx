@@ -8,23 +8,23 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 const Users = () => {
-  const { users, getUsers } = useContext(UsersContext);
+	const { users, getUsers } = useContext(UsersContext);
 
-  useEffect(() => {
-    if (!users.length) {
-      getUsers();
-    }
-  }, []);
+	useEffect(() => {
+		if (!users.length) {
+			getUsers();
+		}
+	}, []);
 
-  return (
-    <Container>
-      <Typography variant="h1">עמיתים</Typography>
-        <DataTable<User>
-          rows={users}
-          columns={usersColumnHeaders}
-        />
-    </Container>
-  );
+	return (
+		<Container>
+			<Typography variant="h1">עמיתים</Typography>
+			<DataTable<User>
+				rows={users}
+				columns={usersColumnHeaders}
+			/>
+		</Container>
+	);
 };
 
 export default Users;

@@ -7,24 +7,24 @@ import { Stock } from 'utils/types';
 import Typography from '@mui/material/Typography';
 
 const Home = () => {
-  const { stocks, getStocks } = useContext(StocksContext);
+	const { stocks, getStocks } = useContext(StocksContext);
 
-  useEffect(() => {
-    if (!stocks.length) {
-      getStocks();
-    }
-  }, []);
+	useEffect(() => {
+		if (!stocks.length) {
+			getStocks();
+		}
+	}, []);
 
-  return (
-    <Container>
-      <Typography variant="h1">מניות</Typography>
-      <DataTable<Stock>
-        collapsible
-        columns={stocksColumnHeaders}
-        rows={stocks}
-      />
-    </Container>
-  );
+	return (
+		<Container>
+			<Typography variant="h1">מניות</Typography>
+			<DataTable<Stock>
+				collapsible
+				columns={stocksColumnHeaders}
+				rows={stocks}
+			/>
+		</Container>
+	);
 };
 
 export default Home;

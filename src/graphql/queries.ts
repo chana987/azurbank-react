@@ -6,11 +6,27 @@ export const GET_ALL_STOCKS = gql`
       data {
         id
         attributes {
-          hebrewName
-          values {
+          companyName
+          currency
+          dividends {
             date
-            value
+            percentage
+            sum
+            xDate
           }
+          DPR
+          hebrewName
+          historicPrices {
+            date
+            stockPrice
+          }
+          isin
+          issuerId
+          marketValue
+          PE
+          securityId
+          stockPrice
+          symbol
         }
       }
     }
@@ -23,8 +39,39 @@ export const GET_ALL_USERS = gql`
       data {
         id
         attributes {
-          username
+          actions {
+            amount
+            date
+            status
+            stock {
+              data {
+                id
+              }
+            }
+            stockPrice
+            type
+          }
           birthday
+          email
+          firstName
+          gender
+          lastName
+          role {
+            data {
+              attributes {
+                name
+              }
+            }
+          }
+          stocks {
+            amount
+            stock {
+              data {
+                id
+              }
+            }
+          }
+          username
         }
       }
     }
@@ -37,23 +84,42 @@ export const GET_USER = gql`
       data {
         id
         attributes {
-          username
+          actions {
+            amount
+            date
+            status
+            stock {
+              data {
+                id
+              }
+            }
+            stockPrice
+            type
+          }
+          balance
           birthday
+          createdAt
+          email
+          firstName
+          gender
+          joinDate
+          lastName
+          role {
+            data {
+              attributes {
+                name
+              }
+            }
+          }
           stocks {
             amount
             stock {
               data {
                 id
-                attributes {
-                  hebrewName
-                  values {
-                    date
-                    value
-                  }
-                }
               }
             }
           }
+          username
         }
       }
     }
@@ -67,7 +133,11 @@ export const ME = gql`
       username
       email
       role {
-        name
+        data {
+          attributes {
+            name
+          }
+        }
       }
     }
   }
