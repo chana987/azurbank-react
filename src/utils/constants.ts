@@ -1,5 +1,5 @@
-import { Action, Currency, HistoricPrice, Route, Stock, User, UserStock } from './types';
-import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
+import { Action, Currency, HistoricPrice, Stock, User, UserStock } from './types';
+import { MRT_ColumnDef } from 'material-react-table';
 
 export const currencySymbols: Record<string, string> = {
 	[Currency.ILS]: '₪',

@@ -1,6 +1,6 @@
 import { useLazyQuery } from '@apollo/client';
 import {
-	GET_ALL_USERS, GET_USER
+	GET_ALL_USERS, GET_USER,
 } from '../graphql/queries';
 import React, { createContext } from 'react';
 import { UsersContextState } from 'utils/types';

@@ -10,7 +10,7 @@ import Collapse from '@mui/material/Collapse';
 import DataTable from './DataTable';
 import { stockColumnHeaders } from 'utils/constants';
 import { StocksContext } from 'context/stocks';
-import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
+import { MRT_ColumnDef } from 'material-react-table';
 
 interface RowProps<T extends Record<string, any>> {
   collapsible?: boolean;

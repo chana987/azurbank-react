@@ -2,7 +2,7 @@ import { setContext } from '@apollo/client/link/context';
 import {
 	ApolloClient,
 	createHttpLink,
-	InMemoryCache
+	InMemoryCache,
 } from '@apollo/client';
 
 export const saveJwt = (jwt: string) => {
@@ -20,7 +20,7 @@ export interface UserData {
   firstname: string;
   lastname: string;
 }
-export const saveUserData = (userData: UserData) => Promise<boolean>;
+export const saveUserData = () => Promise<boolean>;
 export const removeUserData = () => Promise<boolean>;
 export const getUserData = () => Promise<UserData>;
 
@@ -34,7 +34,7 @@ const authLink = setContext((_, { headers }) => {
 		headers: {
 			...headers,
 			authorization: jwt || '',
-		}
+		},
 	};
 });
 

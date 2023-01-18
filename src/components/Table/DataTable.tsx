@@ -5,7 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Row from './Row';
-import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
+import { MRT_ColumnDef } from 'material-react-table';
 
 interface ColProps<T extends Record<string, any>> {
   collapsible?: boolean;

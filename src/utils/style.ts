@@ -63,8 +63,6 @@ export const theme = createTheme({
 		},
 		MuiTable: {
 			styleOverrides: {
-				root: ({ theme }: any) => ({
-				}),
 			},
 		},
 		MuiTableCell: {
